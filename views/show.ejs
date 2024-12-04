@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Table</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+  
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.0.24/dist/tailwind.min.css" rel="stylesheet">
+
+    
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            /* background-color: #f8f9fa; */
+            background-color: white;
+            padding: 10px 60px;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .content-wrapper {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px;
+        }
+
+        .main-content {
+            width: 70%;
+        }
+
+        .sidebar {
+            width: 28%;
+            
+            /* color: #ecf0f1; */
+            color: black;
+            padding-right: 60px;
+            border-radius: 10px;
+            /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+            float: right;
+            position: absolute;
+            top: 71px;
+            right: 0;
+        }
+        
+
+        .sidebar table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .sidebar th, .sidebar td {
+            text-align: left;
+            padding: 10px;
+            border-bottom: 1px solid #bdc3c7;
+        }
+
+        .sidebar th {
+            background-color: #34495e;
+            color: #ecf0f1;
+            font-weight: bold;
+        }
+
+        .sidebar tr:hover {
+            background-color: #1abc9c;
+            cursor: pointer;
+        }
+
+        form {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        #row1, #row2 {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        label {
+            
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        input[type="text"]:focus, input[type="number"]:focus {
+            outline: none;
+            border-color: #007BFF;
+            box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #dee2e6;
+            text-align: center;
+        }
+
+        th {
+            background-color: #343a40;
+            color: #ffffff;
+        }
+
+        .add-btn {
+            background-color: #28a745;
+            color: #ffffff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-btn:hover {
+            background-color: #218838;
+        }
+
+        #save-btn {
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        #save-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .rcontainer{
+            padding-right: 500px;
+        }
+
+        #totalamt{
+            width: 150px;
+            padding-left: 0px 300px ;
+        }
+
+
+        /* Specific container styling */
+.invoice-container {
+    display: flex;
+    align-items: center; /* Align input and button vertically */
+    justify-content: space-between; /* Space between elements */
+    gap: 10px; /* Gap between input and button */
+    padding: 20px; /* Padding inside the container */
+    background-color: #f7f7f7; /* Light background color for the container */
+    border-radius: 10px; /* Rounded corners for the container */
+    width: 100%; /* Full width */
+    max-width: 600px; /* Maximum width of the container */
+    margin: 0 auto; /* Center the container horizontally */
+}
+
+/* Styling for the input field inside the specific container */
+.invoice-container .input-field {
+    padding: 10px 15px; /* Padding inside the input */
+    border: 2px solid #ccc; /* Light gray border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px; /* Font size */
+    width: 200px; /* Fixed width */
+    background-color: #f9f9f9; /* Light background color */
+    color: #333; /* Text color */
+    cursor: not-allowed; /* Make the input read-only appear non-interactive */
+}
+
+/* Styling for the save button inside the specific container */
+.invoice-container .save-btn {
+    padding: 10px 20px; /* Padding inside the button */
+    background-color: #007BFF; /* Blue background */
+    color: white; /* White text */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px; /* Font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+/* Hover effect for the save button inside the specific container */
+.invoice-container .save-btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Focus effect for the save button inside the specific container */
+.invoice-container .save-btn:focus {
+    outline: none; /* Remove the default focus outline */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Blue glow effect */
+}
+
+.view-bill-icon {
+            cursor: pointer;
+            font-size: 24px;
+            color: red;
+        }
+        
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Item Stock and Sales</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Stock</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Sales</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    
+    <div>
+        <div class="rcontainer">
+            <form method="post" action="save-invoice">
+                <div id="row1">
+                    <div>
+                        <label for="order-id">Order Id:</label>
+                        <input type="text" id="order-id" name="orderid" >
+                    </div>
+                    <div>
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name">
+                    </div>
+                    <div>
+                        <label for="date">Date:</label><p id="date"></p>
+                        <input type="hidden" name="billdate" id="billdate">
+                    </div>
+                </div>
+            
+
+                    <!-- Invoice Table -->
+                    <table id="invoice-table">
+                        <tr>
+                            <th>Sl No.</th>
+                            <th>Item</th>
+                            <th>Rate</th>
+                            <th>Quantity</th>
+                            <th>Amount</th>
+                            <th>Add Item</th>
+                        </tr>
+                        <tr>
+                            <td class="sl-no">1</td>
+                            <td>
+                                <div class="input-container">
+                                    <input type="text" class="myInput" list="languages" id="cls" placeholder="Enter item name" autocomplete="off">
+                                    <datalist id="languages"></datalist>
+                                    <div id="suggestions"></div>
+                                </div>
+                            </td>
+                            <td class="item-rate">
+                                <input type="text" name="rate" id="rate" placeholder="Rate" autocomplete="off">
+                            </td>
+                            <td>
+                                <input type="text" placeholder="Enter quantity" id="qty" autocomplete="off">
+                            </td>
+                            <td class="item-amount">
+                                <input type="text" id="amount" placeholder="Amount.." autocomplete="off">
+                            </td>
+                            <td>
+                                <button class="add-btn" id="add-btn" type="button">Add</button>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <!-- Saving Data -->
+                    <div >
+                        <table id="invoice-table1">
+                            <tr>
+                                <th>Item</th>
+                                <th>Rate</th>
+                                <th>Quantity</th>
+                                <th>Amount</th>
+                                <th>Delete</th>
+                            </tr>
+                            <tbody>
+                                
+                                <% 
+                                var total=0;
+                                    data1.forEach((e) => {
+                                        total+=e.Amount;
+                                %>
+                                <tr>
+                                    <td><%= e.ItemName %></td>
+                                    <td><%= e.Rate %></td>
+                                    <td><%= e.Quantity %></td>
+                                    <td><%= e.Amount %></td>
+                                    <td>
+                                        <a href="delete?id=<%=e._id%>">
+                                            <i class="fa fa-trash" style="font-size:24px; cursor: pointer;"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <% 
+                                    });
+                                %>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="invoice-container">
+                        <!-- Total Amount Input Field -->
+                        <input type="number" id="totalamt" class="input-field" readonly value="<%=total%>">
+                        <input type="hidden" name="total" value="<%=total%>">
+                    
+                        <!-- Save Button -->
+                        <button id="save-invoice-btn" type="submit" class="save-btn" >Save</button>
+
+                        <button id="new-invoice-btn" type="button" class="save-btn" >New</button>
+                    </div>
+                    
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="sidebar">
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Order Id</th>
+                <th>Total Amount</th>
+                <th>View Bill</th>
+            </tr>
+        </thead>
+        <tbody id="invoiceTable">
+            <!-- Rows will be dynamically added here -->
+        </tbody>
+    </table>
+</div>  
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        function loadData()
+        {
+            
+            if(localStorage.getItem("orderId"))
+               {
+                    //alert(localStorage.getItem("orderId"))
+                    $("#order-id").val(localStorage.getItem("orderId"))
+                    $("#name").val(localStorage.getItem("nameValue"))
+               }
+        }
+        loadData();
+        $(document).ready(function () {
+            $("#add-btn").click(function () {
+
+                var orderId = $("#order-id").val();
+                // console.log(orderId)
+                
+               if(localStorage.getItem("orderId"))
+               {
+                    var oid=localStorage.getItem("orderId");
+                    if(orderId!=oid)
+                    localStorage.setItem("orderId",orderId)
+                    $("#order-id").val(localStorage.getItem("orderId"))
+                   
+                    if(orderId.length == 0 )
+                    {
+                        alert("Enter Order ID ")
+                        return ;
+                    }
+               }
+               else{
+                localStorage.setItem("orderId", orderId);
+               }
+
+
+                
+                var nameValue = $("#name").val(); // Get the name value
+                localStorage.setItem("nameValue", nameValue);
+                
+                var iname = $("#cls").val();
+                var rate = $("#rate").val();
+                var qty = $("#qty").val();
+                var amount = $("#amount").val();
+                
+
+                $.ajax({
+                    contentType: "application/json",
+                    type: "GET",
+                    url: "http://localhost:3000/citem?key=" + iname,
+                    success: function (item) {
+                        
+                        if (item.data!=null) {
+                            var updatedQty = parseInt(item.data.Quantity) + parseInt(qty);
+
+                            
+                            $.ajax({
+                                contentType: "application/json",
+                                type: "GET",
+                                url: `http://localhost:3000/update-item?ItemName=${iname}&qty=${qty}`,
+                                success: function () {
+                                    alert("Item Updated");
+                                    location.reload();
+                                    
+                                }
+                            });
+                        }else{
+                            $.ajax({
+                                contentType: "application/json",
+                                type: "POST",
+                                url: "http://localhost:3000/add-item",
+                                data: JSON.stringify({
+                                    orderId : orderId,
+                                    ItemName: iname,
+                                    Rate: rate,
+                                    Quantity: qty,
+                                    Amount: parseFloat(rate) * parseInt(qty) 
+                                }),
+                                success: function () {
+                                    alert("Data Added !!");
+                                    location.reload();
+
+                                   
+                                }
+                            });
+                        }
+                        
+                    }
+                });
+            });
+
+            
+
+            $("#cls").keyup(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "http://localhost:3000/show-suggestion",
+                    success: function (data) {
+                        var id = document.getElementById("languages");
+                        id.innerHTML = "";
+                        data.forEach(e => {
+                            var op = document.createElement("option");
+                            op.value = e.ItemName;
+                            id.appendChild(op);
+                        });
+                    }
+                });
+            });
+
+            $("#cls").blur(function () {
+                var key = $(this).val();
+                $.ajax({
+                    type: "GET",
+                    url: "http://localhost:3000/show-rate?key=" + key,
+                    success: function (data) {
+                        $("#rate").val(data.rate);
+                    }
+                });
+            });
+
+            $("#qty").keyup(function () {
+                var qty = $(this).val();
+                var rate = $("#rate").val();
+                var amt = qty * rate;
+                $("#amount").val(amt);
+            });
+        });
+
+
+    </script>
+
+<script>
+   function showData()
+   {
+        
+        $.ajax({
+            url: "http://localhost:3000/invoice-item-bill", 
+            type: "GET", 
+            success: function (data) {
+                const tableBody = $("#invoiceTable");
+
+                
+                tableBody.empty();
+
+                
+                data.forEach((invoice) => {
+                    const row = $("<tr></tr>"); 
+                    
+                    
+                    row.append($("<td></td>").text(invoice.orderId));
+
+                    
+                    row.append($("<td></td>").text(`$${invoice.totalAmount}`));
+
+                    
+                    const viewBillCell = $("<td></td>");
+                    const viewBillIcon = $("<i></i>")
+                        .addClass("fas fa-receipt view-bill-icon") 
+                        .attr("data-order-id", invoice.orderId) 
+                        .on("click", function () {
+                            const orderId = $(this).data("order-id");
+                           window.location.href = `/view-bill/${orderId}`;
+                          // window.location.href ="/view-bill";
+                        });
+
+                    viewBillCell.append(viewBillIcon);
+                    row.append(viewBillCell);
+
+                    
+                    tableBody.append(row);
+                });
+            },
+            error: function (error) {
+                console.error("Error fetching invoice data:", error);
+            }
+        });
+   }
+   showData();
+</script>
+<!-- <script>
+    function calculateSum() {
+        
+        // const amountInputs = document.getElementById('#amount').innerText;
+        const row = this.closest('tr');
+        const amountInputs = row.querySelector('#amount');
+        let sum = 0;
+    
+        amountInputs.forEach(input => {
+            console.log(input.value)
+            const value = parseFloat(input.value); 
+            console.log(value)
+            if (!isNaN(value)) { 
+                sum += value;
+            }
+        });
+
+        
+        document.getElementById('totalamt').value = sum;
+    }
+</script> -->
+
+<!-- <script>
+    document.getElementById('total-amt').addEventListener('click', function() {
+        // Get the row where the button was clicked
+        const row = this.closest('tr');
+
+        // Get the rate, quantity, and amount inputs within that row
+       
+        const amountInput = row.getElementById('#amount')
+        console.log("**************** ",amountInput)
+       
+        const amount =float.parseFloat(amountInput);
+        console.log(amount)
+
+        // Display the calculated amount in the amount field
+        amountInput.value = amount.toFixed(2);  // Format to two decimal places for currency
+
+        // Optional: Clear input fields after adding (if needed)
+        // rateInput.value = '';
+        // quantityInput.value = '';
+    });
+</script> -->
+
+
+    <script>
+        $(document).ready(function(){
+            $.ajax({
+                type:"GET",
+                url:"http://localhost:3000/order-id",
+                success: function (data) {
+                console.log(data);
+                if (data.orderid) {
+                    $("#order-id").val(data.orderid);
+                } else {
+                    alert("Order ID not found");
+                }
+            }
+            })
+        })
+    </script>
+
+
+<script>
+    var d = new Date();
+    var date = d.getDate();
+    var month = d.getMonth() + 1;
+    var year = d.getFullYear();
+
+    var final_date = date + '/' + month + '/' +  year ;
+
+    document.getElementById("date").innerHTML = final_date;
+    document.getElementById("billdate").value = final_date;
+
+
+    // const preservedName = localStorage.getItem("nameValue");
+    // if (preservedName) {
+    //     $("#name").val(preservedName); 
+    //     localStorage.removeItem("nameValue"); 
+
+    // }
+    // const preservedId = localStorage.getItem("orderId");
+    // if (preservedId) {
+    //     $("#order-id").val(preservedId); 
+    //     localStorage.removeItem("orderId"); 
+    // }
+</script>
+
+
+<!-- <script>
+    
+    document.getElementById("save-invoice-btn").addEventListener("click", function(event) {
+            event.preventDefault(); // Prevent form submission
+            
+            // Select the table body
+            const tableBody = document.querySelector("#invoice-table1 tbody");
+            
+            if (tableBody) {
+                // Clear all rows from the table body
+                tableBody.innerHTML = "";
+                alert("Table data cleared successfully!");
+            }
+        });
+</script> -->
+
+
+
+
+
+<script>
+    $('#save-invoice-btn').click(function() {
+        function clearBoxes()
+        {
+            $("#name").val(''); 
+        }
+        $.ajax({
+            url: 'http://localhost:3000/updateOrderId',
+            type: 'GET',
+            contentType: 'application/json',
+            success: function(response) {
+                clearBoxes();
+                alert("Data Saved!!");
+            },
+            error: function(err) {
+                alert("An error occurred while saving data.");
+                console.error(err);
+            }
+        });
+    });
+</script>
+
+
+<script>
+    $('#new-invoice-btn').click(function() {
+        $("#name").val(''); 
+    });
+</script>
+
+</form>
+
+</body>
+</html>

@@ -1,28 +1,46 @@
-Stock Management and Inventory Control System
+**Stock Management and Inventory Control System**
+
 A dynamic and efficient system built using modern web technologies to simplify inventory management and billing processes.
 
-Project Overview
+**Project Overview**
+
 This system provides an all-in-one solution for inventory and billing needs, featuring:
 
-Items in Stock: View and manage items currently in stock.
-Add Items: Add new items with ease and search for existing ones efficiently.
-Calculate Total Amount: Automatically compute the total bill for customers.
-Display Items: Showcase all items in stock with relevant details.
-Track Users and Bills: Keep track of customer purchases and associated bills.
-Generate Bills: Create detailed and professional customer receipts.
-Track Items: Monitor and manage stock levels effectively.
-Features
+Items in Stock:
+ View and manage items currently in stock.
+Add Items: 
+Add new items with ease and search for existing ones efficiently.
+Calculate Total Amount: 
+Automatically compute the total bill for customers.
+Display Items: 
+Showcase all items in stock with relevant details.
+Track Users and Bills: 
+Keep track of customer purchases and associated bills.
+Generate Bills:
+ Create detailed and professional customer receipts.
+Track Items:
+ Monitor and manage stock levels effectively.
+
+
+**Features**
+
+
+
 Real-time inventory updates.
 User-friendly item search functionality.
 Efficient billing with automatic calculations.
 Comprehensive tracking of users and their purchase histories.
-Technologies and Tools Used
+
+
+**Technologies and Tools Used**
+
+
 Backend: Node.js
 Templating Engine: EJS (Embedded JavaScript)
 Frontend: JavaScript, AJAX, jQuery
 Database: MongoDB
 
-Screenshots
+**Screenshots**
 1. Adding Items to Inventory
 The interface for adding new items and updating the stock.
 ![Screenshot 2024-12-04 094010](https://github.com/user-attachments/assets/af8836d5-ef4c-4cc3-890a-dc4be76c6553)

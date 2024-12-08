@@ -49,7 +49,8 @@ The interface for adding new items and updating the stock.
 
 2. Generating a Bill
 Bill creation interface for sales transactions.
-![Screenshot 2024-12-04 094643](https://github.com/user-attachments/assets/b46541a0-7e77-4c26-90a0-5de335f8017c)
+![image](https://github.com/user-attachments/assets/52dee9e1-0234-48a3-993e-05f44a96c148)
+
 
 
 
